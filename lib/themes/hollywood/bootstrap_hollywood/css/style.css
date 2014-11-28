@@ -1,0 +1,192 @@
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#wrapper {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 300px;
+}
+
+#sidebar-wrapper {
+    z-index: 300;
+    position: fixed;
+    left: 300px;
+    width: 0;
+    height: 100%;
+    margin-left: -300px;
+    overflow-y: auto;
+    background: #222;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 200px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -200px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav a:hover {
+  background: #eee;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999; 
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding: 30px 50px 50px 250px;
+    }
+    p {
+      width: 75%;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+      width: 200px;
+      background: none;
+      margin-left: -250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+    .page-node .haiku .content p {
+      width: 50%;
+    }
+}
+
+/** HOLLYWOOD **/
+.navbar-toggle .icon-bar {
+  background: #666;
+}
+.nav-tabs {
+  padding-top: 40px;
+}
+.page-header {
+  border: 0;
+}
+.node-type-post .page-header {
+  display: none;
+}
+h2 {
+  color: #998;
+}
+.page-header {
+  margin: 0 0 20px 0;
+}
+/* Hide Drupally admin-yField Collection shiz */
+.action-links,
+.field-collection-view-links {
+  display: none;
+} 
+.field-collection-container {
+  border: 0;
+}
+.field-collection-view {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.secondary-nav {
+  margin-top: 40px;
+  padding:0;
+  font-size: 12px;
+  list-style: none;
+}
+.node {
+  margin-bottom: 20px;
+}
+.page-node .node-post .content {
+  min-height: 400px;
+  padding-bottom: 20px;
+}
+.node-post .content-footer {
+  border-top: 1px solid #ddd;
+}
+/* haiku */
+.haiku .content p{
+  padding: 20px;
+  background: #eee;
+}
+.haiku.node-teaser a{
+  text-decoration: none;
+  color: #222;
+}
+.page-node .haiku .content p{
+  font-size: 20px;
+}
+.dropdown-nav-menu {
+  list-style: none;
+}
+
