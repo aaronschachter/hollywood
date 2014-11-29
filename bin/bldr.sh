@@ -134,6 +134,7 @@ function release {
     git pull
   else
     # Else clone the dist repo to dist dir
+    cd $BASE_PATH
     echo 'Cloning dist repo...'
     git clone https://github.com/aaronschachter/hollywood-dist.git $DIST_DIR
   fi
@@ -144,7 +145,7 @@ function release {
   git push origin $1
   # Copy web dir contents which have changed into to dist
   echo 'Copying over changed files into local dist...'
-  cp -r $WEB_PATH/* $DIST_PATH
+  rsync -r $WEB_PATH/* $DIST_PATH
   # Remove symlink copied from web_path
   rm -rf $DIST_PATH/sites/all/themes/hollywood/bootstrap_hollywood
   # Copy theme (since its symlinked in the $WEB_PATH)
