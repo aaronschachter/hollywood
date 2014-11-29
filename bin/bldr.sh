@@ -60,6 +60,9 @@ function build {
   rm -rf "$WEB_PATH/sites/all/themes/hollywood/bootstrap_hollywood"
   ln -s "$LIB_PATH/themes/hollywood/bootstrap_hollywood" "$WEB_PATH/sites/all/themes/hollywood/bootstrap_hollywood"
 
+  # Run any updates
+  cd $WEB_PATH
+  drush -y updb
   drush cc all
   echo 'Build complete.'
 }
