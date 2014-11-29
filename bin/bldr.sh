@@ -29,6 +29,12 @@ CONFIG_PATH=$BASE_PATH/$CONFIG_DIR
 # Project build make file
 BUILD_MAKEFILE=$BASE_PATH/hollywood.make
 
+# Dist directory name to write releases to
+DIST_DIR='dist'
+
+# Full dist path
+DIST_PATH=$BASE_PATH/$DIST_DIR
+
 
 #=== FUNCTION ==================================================================
 # NAME: build
@@ -56,13 +62,15 @@ function build {
   ln -s $CONFIG_PATH/settings.php $WEB_PATH/sites/default/settings.php
 
   # Create symlinks
-  echo 'Linking theme'
+  echo 'Linking theme...'
   rm -rf "$WEB_PATH/sites/all/themes/hollywood/bootstrap_hollywood"
   ln -s "$LIB_PATH/themes/hollywood/bootstrap_hollywood" "$WEB_PATH/sites/all/themes/hollywood/bootstrap_hollywood"
 
   # Run any updates
   cd $WEB_PATH
+  echo 'Running updates...'
   drush -y updb
+  echo 'Clearing all cache...'
   drush cc all
   echo 'Build complete.'
 }
@@ -71,8 +79,7 @@ function build {
 # NAME: art
 # DESCRIPTION: Displays sweet ascii art.
 #===============================================================================
-function art() {
-#!/bin/bash
+function art {
 
 cat <<"EOT"
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -100,9 +107,81 @@ cat <<"EOT"
 ##########:::##########################################################
 #######################################################################
 #######################################################################
-################################################################# dp ##
+#######################################################################
 EOT
 }
 
-# Run this shit
-build
+#=== FUNCTION ==================================================================
+# NAME: release
+# DESCRIPTION: Creates a new tag release and pushes compliled site to dist repo.
+#===============================================================================
+function release {
+  if [ -z "$1" ]
+    then
+      echo "No release tag supplied."
+      exit
+    else
+      echo "Building release $1..."
+  fi
+  # Build the HTML directory.
+  build
+  # If distro directory exists:
+  if [[ -d $DIST_PATH ]]
+  then
+    cd $DIST_PATH
+    # Pull down the latest
+    'Updating dist repo...'
+    git pull
+  else
+    # Else clone the dist repo to dist dir
+    echo 'Cloning dist repo...'
+    git clone https://github.com/aaronschachter/hollywood-dist.git $DIST_DIR
+  fi
+  cd $BASE_PATH
+  echo "Creating tag $1..."
+  git tag $1
+  git tag
+  git push origin $1
+  # Copy web dir contents which have changed into to dist
+  echo 'Copying over changed files into local dist...'
+  cp -r $WEB_PATH/* $DIST_PATH
+  # Remove symlink copied from web_path
+  rm -rf $DIST_PATH/sites/all/themes/hollywood/bootstrap_hollywood
+  # Copy theme (since its symlinked in the $WEB_PATH)
+  cp -r $LIB_PATH/themes/hollywood/bootstrap_hollywood $DIST_PATH/sites/all/themes/hollywood/bootstrap_hollywood
+  cd $DIST_PATH
+  echo 'Pushing to dist repo...';
+  git add .
+  git commit -m "Release $1"
+  git push origin master
+  echo 'Creating release tag...';
+  git tag $1
+  git tag
+  git push origin $1
+}
+
+# ==============================================================================
+# Commands
+# ==============================================================================
+
+#----------------------------------------------------------------------
+# build
+#----------------------------------------------------------------------
+if [[ $1 == "build" ]]
+then
+  build
+fi
+
+#----------------------------------------------------------------------
+# art
+#----------------------------------------------------------------------
+if [[ $1 == "art" ]]
+then
+  art
+fi
+
+# Release
+if [[ $1 == "release" ]]
+then
+  release $2
+fi
