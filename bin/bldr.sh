@@ -130,7 +130,7 @@ function release {
   then
     cd $DIST_PATH
     # Pull down the latest
-    'Updating dist repo...'
+    echo 'Updating dist repo...'
     git pull
   else
     # Else clone the dist repo to dist dir
