@@ -11,10 +11,10 @@ projects[admin_menu][subdir] = "contrib"
 projects[bootstrap_library][version] = "1.4"
 projects[bootstrap_library][subdir] = "contrib"
 
-projects[ctools][version] = "1.4"
+projects[ctools][version] = "1.5"
 projects[ctools][subdir] = "contrib"
 
-projects[devel][version] = "1.3"
+projects[devel][version] = "1.5"
 projects[devel][subdir] = "contrib"
 
 projects[entity][version] = "1.5"
