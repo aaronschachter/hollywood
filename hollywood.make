@@ -43,6 +43,8 @@ projects[pathauto][subdir] = "contrib"
 
 projects[redirect][version] = "1.0-rc1"
 projects[redirect][subdir] = "contrib"
+; Allows redirect module to work on bluehost https://drupal.org/node/1198028
+projects[redirect][patch][] = https://www.drupal.org/files/redirect-drupal-subdirectory-fix-1198028-13.patch
 
 projects[stage_file_proxy][version] = "1.6"
 projects[stage_file_proxy][subdir] = "contrib"
