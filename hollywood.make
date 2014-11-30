@@ -41,8 +41,8 @@ projects[metatag][subdir] = "contrib"
 projects[pathauto][version] = "1.2"
 projects[pathauto][subdir] = "contrib"
 
-projects[ctools][version] = "1.4"
-projects[ctools][subdir] = "contrib"
+projects[redirect][version] = "1.0-rc1"
+projects[redirect][subdir] = "contrib"
 
 projects[stage_file_proxy][version] = "1.6"
 projects[stage_file_proxy][subdir] = "contrib"
