@@ -2,6 +2,10 @@
 
 Used to build the Drupal 7 source code for my website, www.aaronschachter.com.
 
+Docs: https://github.com/aaronschachter/hollywood/wiki
+
+Contents:
+
 * **bin**: Scripts for local development and pushing releases to the [distribution repo](https://github.com/aaronschachter/hollywood-dist)
 * **config**: (dir) Contains settings for local development.
 * **lib**: (dir) Custom Drupal 7 code (currently, the only custom code is the site theme)
